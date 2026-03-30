@@ -1,9 +1,11 @@
-function formatacaoMoedas(valor: number): string {
+import { FormatoData } from '../types/formatoData';
+
+export function formatacaoMoedas(valor: number): string {
     return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
 
-function formatacaoData(data: Date, formato: FormatoData = FormatoData.DIA_MES_ANO): string { 
+export function formatacaoData(data: Date, formato: FormatoData = FormatoData.DIA_MES_ANO): string { 
    if(formato === FormatoData.DIA_SEMANA_DIA_MES_ANO) {
     return data.toLocaleDateString("pt-br",  {
         weekday: "long",

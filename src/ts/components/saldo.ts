@@ -1,3 +1,6 @@
+import { formatacaoMoedas, formatacaoData } from '../uteis/formatters';
+import { processarTransacao } from './novaTransacao';
+
 let saldo = 3000;
 
 const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLElement;

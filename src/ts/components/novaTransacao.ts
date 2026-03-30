@@ -1,6 +1,8 @@
+import { tipoTransacao } from '../types/tipoTransacao';
+import { Transacao } from '../types/transacao';
+import { formatacaoMoedas } from '../uteis/formatters';
 
-
-function processarTransacao(elementoFormulario: HTMLFormElement, elementoSaldo: HTMLElement, saldo: number): number {
+export function processarTransacao(elementoFormulario: HTMLFormElement, elementoSaldo: HTMLElement, saldo: number): number {
   const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao") as HTMLSelectElement;
   const inputValor = elementoFormulario.querySelector("#valor") as HTMLInputElement;
   const inputData = elementoFormulario.querySelector("#data") as HTMLInputElement;
