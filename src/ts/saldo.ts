@@ -13,4 +13,6 @@ elementoFormulario.addEventListener("submit", function (event) {
     alert("Preencha todos os campos corretamente!");
     return;
   }
+
+  saldo = processarTransacao(elementoFormulario, elementoSaldo, saldo);
 });

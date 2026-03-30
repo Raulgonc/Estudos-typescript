@@ -15,7 +15,7 @@ function processarTransacao(elementoFormulario, elementoSaldo, saldo) {
     }
     else {
         alert("Tipo de transação inválida!");
-        return;
+        return saldo;
     }
     elementoSaldo.textContent = saldo.toString();
     const novaTransacao = {
@@ -25,4 +25,5 @@ function processarTransacao(elementoFormulario, elementoSaldo, saldo) {
     };
     console.log(novaTransacao);
     elementoFormulario.reset();
+    return saldo;
 }
