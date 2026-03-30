@@ -1,5 +1,5 @@
-import { formatacaoMoedas, formatacaoData } from '../uteis/formatters';
-import { processarTransacao } from './novaTransacao';
+import { formatacaoMoedas, formatacaoData } from '../uteis/formatters.js';
+import { processarTransacao } from './novaTransacao.js';
 
 let saldo = 3000;
 

@@ -1,4 +1,4 @@
-import { tipoTransacao } from './tipoTransacao';
+import { tipoTransacao } from './tipoTransacao.js';
 
 export type Transacao = {
   tipoTransacao: tipoTransacao;

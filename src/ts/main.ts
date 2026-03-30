@@ -1,1 +1,1 @@
-import './components/saldo';
+import './components/saldo.js';
