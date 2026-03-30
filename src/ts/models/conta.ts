@@ -18,7 +18,9 @@ export function registrarTransacao(transacao: Transacao): void {
     throw new Error("O valor da transação deve ser maior que zero.");
   }
 
-  if (
+  if (transacao.tipoTransacao === tipoTransacao.DEPOSITO) {
+    conta.saldo += transacao.valor;
+  } else if (
     transacao.tipoTransacao === tipoTransacao.TRANSFERENCIA ||
     transacao.tipoTransacao === tipoTransacao.PAGAMENTO_BOLETO
   ) {
@@ -27,7 +29,7 @@ export function registrarTransacao(transacao: Transacao): void {
     }
     conta.saldo -= transacao.valor;
   } else {
-    conta.saldo += transacao.valor;
+    throw new Error("Operação não permitida.");
   }
 
   conta.transacoes.push(transacao);

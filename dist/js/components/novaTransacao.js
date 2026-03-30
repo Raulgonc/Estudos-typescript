@@ -10,7 +10,13 @@ export function processarTransacao(elementoFormulario) {
     if (tipo !== tipoTransacao.DEPOSITO &&
         tipo !== tipoTransacao.TRANSFERENCIA &&
         tipo !== tipoTransacao.PAGAMENTO_BOLETO) {
-        throw new Error("Tipo de transação inválida!");
+        throw new Error("Tipo de transação inválido.");
+    }
+    if (isNaN(valor) || valor <= 0) {
+        throw new Error("Valor inválido. Insira um número maior que zero.");
+    }
+    if (isNaN(data.getTime())) {
+        throw new Error("Data inválida.");
     }
     const transacao = {
         tipoTransacao: tipo,
