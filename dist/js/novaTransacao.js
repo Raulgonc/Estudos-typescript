@@ -3,14 +3,14 @@ function processarTransacao(elementoFormulario, elementoSaldo, saldo) {
     const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao");
     const inputValor = elementoFormulario.querySelector("#valor");
     const inputData = elementoFormulario.querySelector("#data");
-    let tipoTransacao = inputTipoTransacao.value;
+    let tipo = inputTipoTransacao.value;
     let valor = (inputValor.valueAsNumber);
     let data = new Date(inputData.value);
-    if (tipoTransacao === "Depósito") {
+    if (tipo === tipoTransacao.DEPOSITO) {
         saldo += valor;
     }
-    else if (tipoTransacao === "Transferência" ||
-        tipoTransacao === "Pagamento de Boleto") {
+    else if (tipo === tipoTransacao.TRANSFERENCIA ||
+        tipo === tipoTransacao.PAGAMENTO_BOLETO) {
         saldo -= valor;
     }
     else {
@@ -19,7 +19,7 @@ function processarTransacao(elementoFormulario, elementoSaldo, saldo) {
     }
     elementoSaldo.textContent = saldo.toString();
     const novaTransacao = {
-        tipoTransacao: tipoTransacao,
+        tipoTransacao: tipo,
         valor: valor,
         data: data,
     };
