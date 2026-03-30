@@ -14,8 +14,7 @@ export function processarTransacao(elementoFormulario: HTMLFormElement): boolean
   if (tipo !== tipoTransacao.DEPOSITO &&
       tipo !== tipoTransacao.TRANSFERENCIA &&
       tipo !== tipoTransacao.PAGAMENTO_BOLETO) {
-    alert("Tipo de transação inválida!");
-    return false;
+    throw new Error("Tipo de transação inválida!");
   }
 
   const transacao: Transacao = {

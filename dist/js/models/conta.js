@@ -5,11 +5,18 @@ export const conta = {
     transacoes: [],
 };
 export function registrarTransacao(transacao) {
-    if (transacao.tipoTransacao === tipoTransacao.DEPOSITO) {
-        conta.saldo += transacao.valor;
+    if (transacao.valor <= 0) {
+        throw new Error("O valor da transação deve ser maior que zero.");
+    }
+    if (transacao.tipoTransacao === tipoTransacao.TRANSFERENCIA ||
+        transacao.tipoTransacao === tipoTransacao.PAGAMENTO_BOLETO) {
+        if (transacao.valor > conta.saldo) {
+            throw new Error("Saldo insuficiente para realizar esta operação.");
+        }
+        conta.saldo -= transacao.valor;
     }
     else {
-        conta.saldo -= transacao.valor;
+        conta.saldo += transacao.valor;
     }
     conta.transacoes.push(transacao);
 }

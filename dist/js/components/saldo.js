@@ -12,8 +12,13 @@ if (elementoDataAcesso !== null) {
 }
 elementoFormulario.addEventListener("submit", function (event) {
     event.preventDefault();
-    const sucesso = processarTransacao(elementoFormulario);
-    if (sucesso) {
+    try {
+        processarTransacao(elementoFormulario);
         elementoSaldo.textContent = formatacaoMoedas(conta.saldo);
+    }
+    catch (erro) {
+        if (erro instanceof Error) {
+            alert(erro.message);
+        }
     }
 });
