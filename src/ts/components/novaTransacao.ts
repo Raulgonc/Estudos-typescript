@@ -1,20 +1,21 @@
 import { tipoTransacao } from '../types/tipoTransacao.js';
 import { Transacao } from '../types/transacao.js';
+import { registrarTransacao } from '../models/conta.js';
 
-export function processarTransacao(elementoFormulario: HTMLFormElement): Transacao | null {
+export function processarTransacao(elementoFormulario: HTMLFormElement): boolean {
   const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao") as HTMLSelectElement;
   const inputValor = elementoFormulario.querySelector("#valor") as HTMLInputElement;
   const inputData = elementoFormulario.querySelector("#data") as HTMLInputElement;
 
-  let tipo: tipoTransacao = inputTipoTransacao.value as tipoTransacao;
-  let valor: number = inputValor.valueAsNumber;
-  let data: Date = new Date(inputData.value);
+  const tipo: tipoTransacao = inputTipoTransacao.value as tipoTransacao;
+  const valor: number = inputValor.valueAsNumber;
+  const data: Date = new Date(inputData.value);
 
   if (tipo !== tipoTransacao.DEPOSITO &&
       tipo !== tipoTransacao.TRANSFERENCIA &&
       tipo !== tipoTransacao.PAGAMENTO_BOLETO) {
     alert("Tipo de transação inválida!");
-    return null;
+    return false;
   }
 
   const transacao: Transacao = {
@@ -23,8 +24,8 @@ export function processarTransacao(elementoFormulario: HTMLFormElement): Transac
     data: data,
   };
 
-  console.log(transacao);
+  registrarTransacao(transacao);
   elementoFormulario.reset();
 
-  return transacao;
+  return true;
 }

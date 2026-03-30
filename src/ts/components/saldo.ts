@@ -1,36 +1,23 @@
 import { formatacaoMoedas, formatacaoData } from '../uteis/formatters.js';
 import { processarTransacao } from './novaTransacao.js';
-import { tipoTransacao } from '../types/tipoTransacao.js';
-import { Transacao } from '../types/transacao.js';
-
-let saldo = 3000;
+import { conta } from '../models/conta.js';
 
 const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLElement;
 const elementoDataAcesso = document.querySelector(".block-saldo time") as HTMLElement;
 const elementoFormulario = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
 
 if (elementoSaldo !== null) {
-  elementoSaldo.textContent = formatacaoMoedas(saldo);
+  elementoSaldo.textContent = formatacaoMoedas(conta.saldo);
 }
 
 if (elementoDataAcesso !== null) {
-  const dataAcesso: Date = new Date();
-  elementoDataAcesso.textContent = formatacaoData(dataAcesso);
-}
-
-function calcularSaldo(transacao: Transacao): void {
-  if (transacao.tipoTransacao === tipoTransacao.DEPOSITO) {
-    saldo += transacao.valor;
-  } else {
-    saldo -= transacao.valor;
-  }
-  elementoSaldo.textContent = formatacaoMoedas(saldo);
+  elementoDataAcesso.textContent = formatacaoData(conta.dataAcesso);
 }
 
 elementoFormulario.addEventListener("submit", function (event) {
   event.preventDefault();
-  const transacao = processarTransacao(elementoFormulario);
-  if (transacao !== null) {
-    calcularSaldo(transacao);
+  const sucesso = processarTransacao(elementoFormulario);
+  if (sucesso) {
+    elementoSaldo.textContent = formatacaoMoedas(conta.saldo);
   }
 });
