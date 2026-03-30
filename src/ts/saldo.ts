@@ -6,13 +6,7 @@ elementoSaldo.textContent = saldo.toString();
 
 const elementoFormulario = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
 
-elementoFormulario.addEventListener("submit", function (event) {
-  event.preventDefault();
+if (elementoSaldo !== null) {
+elementoSaldo.textContent = saldo.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-  if (!elementoFormulario.checkValidity()) {
-    alert("Preencha todos os campos corretamente!");
-    return;
-  }
-
-  saldo = processarTransacao(elementoFormulario, elementoSaldo, saldo);
-});
+};

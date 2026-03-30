@@ -21,7 +21,7 @@ function processarTransacao(elementoFormulario: HTMLFormElement, elementoSaldo: 
     return saldo;
   }
 
-  elementoSaldo.textContent = saldo.toString();
+  elementoSaldo.textContent = saldo.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
   const novaTransacao: Transacao = {
     tipoTransacao: tipo, 
