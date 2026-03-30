@@ -3,7 +3,7 @@ function processarTransacao(elementoFormulario: HTMLFormElement, elementoSaldo: 
   const inputValor = elementoFormulario.querySelector("#valor") as HTMLInputElement;
   const inputData = elementoFormulario.querySelector("#data") as HTMLInputElement;
 
-  let tipoTransacao: string = inputTipoTransacao.value;
+  let tipoTransacao: tipoTransacao = inputTipoTransacao.value as tipoTransacao;
   let valor: number =(inputValor.valueAsNumber);
   let data: Date = new Date(inputData.value);
 
@@ -22,7 +22,7 @@ function processarTransacao(elementoFormulario: HTMLFormElement, elementoSaldo: 
   elementoSaldo.textContent = saldo.toString();
 
   const novaTransacao: Transacao = {
-    tipoTransacao: tipoTransacao,
+    tipoTransacao: tipoTransacao, 
     valor: valor,
     data: data,
   };
