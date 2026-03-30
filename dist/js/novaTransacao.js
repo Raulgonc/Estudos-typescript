@@ -17,7 +17,7 @@ function processarTransacao(elementoFormulario, elementoSaldo, saldo) {
         alert("Tipo de transação inválida!");
         return saldo;
     }
-    elementoSaldo.textContent = saldo.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    elementoSaldo.textContent = formatacaoMoedas(saldo);
     const novaTransacao = {
         tipoTransacao: tipo,
         valor: valor,
