@@ -21,7 +21,7 @@ function processarTransacao(elementoFormulario: HTMLFormElement, elementoSaldo: 
 
   elementoSaldo.textContent = saldo.toString();
 
-  const novaTransacao = {
+  const novaTransacao: Transacao = {
     tipoTransacao: tipoTransacao,
     valor: valor,
     data: data,
