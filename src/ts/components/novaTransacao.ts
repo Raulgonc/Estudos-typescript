@@ -1,38 +1,30 @@
 import { tipoTransacao } from '../types/tipoTransacao.js';
 import { Transacao } from '../types/transacao.js';
-import { formatacaoMoedas } from '../uteis/formatters.js';
 
-export function processarTransacao(elementoFormulario: HTMLFormElement, elementoSaldo: HTMLElement, saldo: number): number {
+export function processarTransacao(elementoFormulario: HTMLFormElement): Transacao | null {
   const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao") as HTMLSelectElement;
   const inputValor = elementoFormulario.querySelector("#valor") as HTMLInputElement;
   const inputData = elementoFormulario.querySelector("#data") as HTMLInputElement;
 
   let tipo: tipoTransacao = inputTipoTransacao.value as tipoTransacao;
-  let valor: number =(inputValor.valueAsNumber);
+  let valor: number = inputValor.valueAsNumber;
   let data: Date = new Date(inputData.value);
 
-  if (tipo === tipoTransacao.DEPOSITO) {
-    saldo += valor;
-  } else if (
-    tipo === tipoTransacao.TRANSFERENCIA ||
-    tipo === tipoTransacao.PAGAMENTO_BOLETO
-  ) {
-    saldo -= valor;
-  } else {
+  if (tipo !== tipoTransacao.DEPOSITO &&
+      tipo !== tipoTransacao.TRANSFERENCIA &&
+      tipo !== tipoTransacao.PAGAMENTO_BOLETO) {
     alert("Tipo de transação inválida!");
-    return saldo;
+    return null;
   }
 
-  elementoSaldo.textContent = formatacaoMoedas(saldo);
-
-  const novaTransacao: Transacao = {
-    tipoTransacao: tipo, 
+  const transacao: Transacao = {
+    tipoTransacao: tipo,
     valor: valor,
     data: data,
   };
 
-  console.log(novaTransacao);
+  console.log(transacao);
   elementoFormulario.reset();
-  
-  return saldo;
+
+  return transacao;
 }
