@@ -2,7 +2,12 @@ import { tipoTransacao } from '../types/tipoTransacao.js';
 export const conta = {
     saldo: 3000,
     dataAcesso: new Date(),
-    transacoes: [],
+    transacoes: [
+        { tipoTransacao: tipoTransacao.TRANSFERENCIA, valor: 36, data: new Date(2024, 8, 4) },
+        { tipoTransacao: tipoTransacao.TRANSFERENCIA, valor: 58, data: new Date(2024, 8, 2) },
+        { tipoTransacao: tipoTransacao.TRANSFERENCIA, valor: 50, data: new Date(2024, 7, 30) },
+        { tipoTransacao: tipoTransacao.DEPOSITO, valor: 86, data: new Date(2024, 7, 27) },
+    ],
 };
 export function registrarTransacao(transacao) {
     if (transacao.valor <= 0) {

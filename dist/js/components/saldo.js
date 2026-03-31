@@ -11,6 +11,7 @@ if (elementoSaldo !== null) {
 if (elementoDataAcesso !== null) {
     elementoDataAcesso.textContent = formatacaoData(conta.dataAcesso);
 }
+renderizarExtrato(conta.transacoes);
 elementoFormulario.addEventListener("submit", function (event) {
     event.preventDefault();
     try {
