@@ -8,6 +8,17 @@ export const conta = {
         { tipoTransacao: tipoTransacao.TRANSFERENCIA, valor: 50, data: new Date(2024, 7, 30) },
         { tipoTransacao: tipoTransacao.DEPOSITO, valor: 86, data: new Date(2024, 7, 27) },
     ],
+    totaisPorTipo() {
+        const totais = {
+            [tipoTransacao.DEPOSITO]: 0,
+            [tipoTransacao.TRANSFERENCIA]: 0,
+            [tipoTransacao.PAGAMENTO_BOLETO]: 0,
+        };
+        for (const transacao of this.transacoes) {
+            totais[transacao.tipoTransacao] += transacao.valor;
+        }
+        return totais;
+    },
 };
 export function registrarTransacao(transacao) {
     if (transacao.valor <= 0) {
